@@ -31,6 +31,6 @@ spec:
             driver: secrets-store.csi.k8s.io
             readOnly: true
             volumeAttributes:
-              secretProviderClass: "azurekv"
+              secretProviderClass: $CSI_STORAGE_CLASS_NAME
             nodePublishSecretRef:
-              name: secrets-store-creds
+              name: $SP_AKS_SECRET
