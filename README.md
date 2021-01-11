@@ -107,7 +107,7 @@ envsubst < azure-kv-provider.yaml | kubectl apply -f -
 envsubst < nginx-deployment.yaml | kubectl apply -f - 
 ```
 
-#### wait for nginx pod to be up and running and then test the secrets are mounted or not
+#### Wait for nginx pod to be up and running and then test the secrets are mounted or not
 ```
 kubectl exec nginx-app -- ls /mnt/secrets/
 kubectl exec nginx-app -- cat /mnt/secrets/DB_PASSWORD
