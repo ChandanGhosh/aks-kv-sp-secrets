@@ -1,6 +1,7 @@
 # Azure AKS and Key vault integration based on service principal for retreiving secrets in key vault
 
 #### Global variables
+###### *If jq not installed in the machine, install it.*
 
 ```
 export SUFFIX=$(echo $RANDOM)
@@ -23,7 +24,7 @@ export SUBID=$(echo $(az account show) | jq -r '.id')
 SPObj=$(az ad sp create-for-rbac --name $SP_NAME --skip-assignment)
 ```
 
-#### Keep the appid and secret in a safe place,we shall need them later. If jq not installed in the machine, install it.
+#### Keep the appid and secret in a safe place,we shall need them later.
 ```
 export SP_CLIENT_ID=$(echo $SPObj | jq -r '.appId')
 export SP_CLIENT_SECRET=$(echo $SPObj | jq -r '.password')
@@ -57,7 +58,7 @@ kubectl create ns $CSI_NAMESPACE
 ```
 
 #### Helm repo for cs-secret-store-driver-azure-provider. 
-***This helm repo provide both the csi-secrets-store-driver as well as csi-secrets-store-driver-azure-provider as well***
+##### ***This helm repo provide both the csi-secrets-store-driver as well as csi-secrets-store-driver-azure-provider as well***
 ``` 
 helm repo add csi-secrets-store-provider-azure https://raw.githubusercontent.com/Azure/secrets-store-csi-driver-provider-azure/master/charts 
 helm install -n $CSI_NAMESPACE csi-secrets-store-provider-azure/csi-secrets-store-provider-azure --generate-name 
